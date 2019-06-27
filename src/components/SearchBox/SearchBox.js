@@ -27,13 +27,37 @@ class SearchBox extends React.Component {
   	}
 
   	addToWishList = (movie) => {
-  		if (this.props.wishList.includes(movie)){
-  			console.log('This movie was already added before.')  			
-  		} else {
-  				console.log('This is a new movie.')
-  		  		this.props.wishList.push(movie)
-  		  		console.log('Array of wish list: ',this.props.wishList)}
-  	}
+
+  		let found = 0;
+
+  		if (!this.props.wishList.length){
+
+  			console.log('Empty list. Adding title...')
+			this.props.wishList.push(movie)
+			console.log('Array of wish list: ',this.props.wishList)
+			found++
+  			} else {
+  				    for (let item of this.props.wishList){
+		  			if (item.imdbID === movie.imdbID){
+		  				console.log(`Comparing search: ${movie.Title}, ${movie.imdbID} to array item: ${item.Title}, ${item.imdbID}.`)
+		  				console.log('This movie was already added before.')
+		  				found++
+		  			} else {
+		  				console.log(`Comparing search: ${movie.Title}, ${movie.imdbID} to array item: ${item.Title}, ${item.imdbID}.`)
+		  				console.log('No match')		  						  				
+		  			}	  			
+			}
+		}
+
+		if (found === 0) {
+			this.props.wishList.push(movie)
+			console.log('Array of wish list: ',this.props.wishList)
+		}
+	}
+  		  
+
+  		
+  				
 
 	render(){		
 			if (this.state.route === 'touched'){
