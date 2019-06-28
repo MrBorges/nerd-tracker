@@ -4,9 +4,7 @@ class MovieCard extends React.Component {
 
 	constructor(props){
 		super(props);
-		this.state = {
-			wantList: [],
-			watchedList: []
+		this.state = {						
 		}
 	}	
 

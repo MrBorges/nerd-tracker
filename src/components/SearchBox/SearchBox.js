@@ -26,34 +26,7 @@ class SearchBox extends React.Component {
 				})
   	}
 
-  	addToWishList = (movie) => {
 
-  		let found = 0;
-
-  		if (!this.props.wishList.length){
-
-  			console.log('Empty list. Adding title...')
-			this.props.wishList.push(movie)
-			console.log('Array of wish list: ',this.props.wishList)
-			found++
-  			} else {
-  				    for (let item of this.props.wishList){
-		  			if (item.imdbID === movie.imdbID){
-		  				console.log(`Comparing search: ${movie.Title}, ${movie.imdbID} to array item: ${item.Title}, ${item.imdbID}.`)
-		  				console.log('This movie was already added before.')
-		  				found++
-		  			} else {
-		  				console.log(`Comparing search: ${movie.Title}, ${movie.imdbID} to array item: ${item.Title}, ${item.imdbID}.`)
-		  				console.log('No match')		  						  				
-		  			}	  			
-			}
-		}
-
-		if (found === 0) {
-			this.props.wishList.push(movie)
-			console.log('Array of wish list: ',this.props.wishList)
-		}
-	}
   		  
 
   		
@@ -64,7 +37,8 @@ class SearchBox extends React.Component {
 				return(
 					<div>
 						<SearchBar loadTitle= {this.loadTitle}/>
-						<MovieCard movie= {this.state.movie} addToWishList={this.addToWishList} />
+						<MovieCard movie= {this.state.movie} addToWishList={this.props.addToWishList} />
+						
 					</div>
 					)
 				} else {
